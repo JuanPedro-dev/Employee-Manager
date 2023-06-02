@@ -1,11 +1,4 @@
-
-
-
-
-
-
-
-
+![EmployeeScreen](https://github.com/JuanPedro-dev/Employee-Manager/assets/89544550/32e6448b-2f83-416e-9443-5069a61e78a3)
 
 
 
