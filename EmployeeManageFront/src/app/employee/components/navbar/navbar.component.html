@@ -1,0 +1,17 @@
+<!-- Navbar -->
+<nav id="navbar" class="navbar navbar-light">
+    <div class="container-fluid">
+      <a class="navbar-brand text-light"><span>Employee System</span></a>
+      <form class="d-flex" #searchForm = "ngForm">
+        <input ngModel name="str" class="form-control me-2 " type="search" placeholder="Search by name, job..." aria-label="Search" />
+        <button (click)="searchEmployee(searchForm)" class="btn btn-outline-success text-light bgc-main" type="submit">
+          Search
+        </button>
+        <button
+          type="button" class="btn btn-outline-success bgc-main text-light ms-3" data-bs-toggle="modal"
+          data-bs-target="#addEmployeeModal">
+          Add
+        </button>
+      </form>
+    </div>
+  </nav>

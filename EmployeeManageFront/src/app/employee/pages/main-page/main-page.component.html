@@ -1,0 +1,19 @@
+<!-- <p>main-page works!</p> -->
+
+<app-navbar 
+    (onSearch)="searchEmployee($event)" 
+></app-navbar>
+
+<app-map 
+    [employeesList]="employees" 
+    >
+</app-map>
+
+<app-card 
+    [employeesList]="employees" 
+    (onAdd)="addNewEmployee($event)"
+    (onDelete)="setEmployee($event)"
+    (onDeleteModal)="deleteEmployee()"
+    (onUpdateModal)="uploadEmployee($event)"
+></app-card>
+

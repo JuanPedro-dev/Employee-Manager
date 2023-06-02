@@ -1,0 +1,187 @@
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<!-- Case Not Employees yet -->
+<div *ngIf="employeesList.length == 0" class="d-flex justify-content-center align-items-center h-100 m-3">
+  <h4 class="text-noFound">Employees <wbr> Not Found</h4>
+  <button type="button" class="btn btn-outline-success text-light bgc-main   ms-3" data-bs-toggle="modal"
+    data-bs-target="#addEmployeeModal">
+    Add
+  </button>
+</div>
+
+<!-- Empleados Container-->
+<div id="contenedor" class="container d-flex justify-content-center align-items-center h-100">
+  <div class="row justify-content-center">
+    <!-- Tarjeta  -->
+    <div class="card-client m-3 d-flex flex-column" *ngFor="let employee of employeesList">
+      <div class="user-picture">
+        <a href=""><img src="{{ employee?.imgUrl }}" alt="image of profile or avatar"
+            class="img-fluid rounded-circle" /></a>
+      </div>
+      <p class="name-client align-items-lg-start">
+        {{ employee?.name }} {{ employee?.lastName }}
+        <span>{{ employee?.job }} </span>
+      </p>
+      <div class="social-media">
+          <a (click)="setEmployee(employee)" href="#" class="btn btn-primary tooltips" data-bs-toggle="modal"
+            data-bs-target="#uploadEmployeeModal" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i
+              class="fa fa-pencil"></i>
+            <span class="tooltip-social">Modify</span>
+          </a> 
+          <a (click)="setEmployee(employee)" href="#" class="btn btn-danger tooltips" data-bs-toggle="modal"
+            data-bs-target="#deleteEmployeeModal" data-placement="top" data-toggle="tooltip"
+            data-original-title="Delete"><i class="fa fa-times"></i>
+            <span class="tooltip-social">Delete</span>
+          </a>  
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--                                           Modals -->
+<!-- Modal-create  -->
+<div class="modal fade" id="addEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #addForm="ngForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" ngModel name="name" class="form-control" id="name" required minlength="4" />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" ngModel name="lastName" class="form-control" id="lastName" />
+          </div>
+          <div class="mb-3 d-flex flex-column">
+            <label for="job" class="form-label">Job Position</label>
+            <select id="job" ngModel name="job" class="form-control">
+              <option value="UNDEFINED" selected>UNDEFINED </option>
+              <option value="ELECTRICIAN">ELECTRICIAN</option>
+              <option value="PLUMBER">PLUMBER</option>
+              <option value="CARPENTER">CARPENTER</option>
+              <option value="PAINTER">PAINTER</option>
+              <option value="IT">IT</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="imgUrl" class="form-label">URL Image</label>
+            <input type="text" ngModel name="imgUrl" class="form-control" id="imgUrl" />
+            <div class="form-text">This is optional.</div>
+          </div>
+          <div class="mb-3">
+            <label for="latitude" class="form-label">Latitud</label>
+            <input type="text" ngModel name="latitude" class="form-control" id="latitude" />
+          </div>
+          <div class="mb-3">
+            <label for="longitude" class="form-label">Longitud</label>
+            <input type="text" ngModel name="longitude" class="form-control" id="longitude" />
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Dirección</label>
+            <input type="text" ngModel name="address" class="form-control" id="address" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn-closeAddModal" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button (click)="addNewEmployee(addForm)" type="submit" class="btn btn-primary">
+                Add
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal-update  -->
+<div class="modal fade" id="uploadEmployeeModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modify Employee</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #uploadForm="ngForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" ngModel name="name" class="form-control" id="name" required minlength="4" />
+          </div>
+          <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" ngModel name="lastName" class="form-control" id="lastName" />
+          </div>
+          <div class="mb-3 d-flex flex-column">
+            <label for="job" class="form-label">Job Position</label>
+            <select id="job" ngModel name="job" class="form-control">
+              <option value="UNDEFINED" selected>UNDEFINED </option>
+              <option value="ELECTRICIAN">ELECTRICIAN</option>
+              <option value="PLUMBER">PLUMBER</option>
+              <option value="CARPENTER">CARPENTER</option>
+              <option value="PAINTER">PAINTER</option>
+              <option value="IT">IT</option>
+            </select>
+          </div>
+          <div class="mb-3">
+            <label for="imgUrl" class="form-label">URL Image</label>
+            <input type="text" ngModel name="imgUrl" class="form-control" id="imgUrl" />
+            <div class="form-text">This is optional.</div>
+          </div>
+          <div class="mb-3">
+            <label for="latitude" class="form-label">Latitud</label>
+            <input type="text" ngModel name="latitude" class="form-control" id="latitude" />
+          </div>
+          <div class="mb-3">
+            <label for="longitude" class="form-label">Longitud</label>
+            <input type="text" ngModel name="longitude" class="form-control" id="longitude" />
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Dirección</label>
+            <input type="text" ngModel name="address" class="form-control" id="address" />
+          </div>
+          <div class="modal-footer">
+            <button type="button" id="btn-closeUploadModal" class="btn btn-secondary" data-bs-dismiss="modal">
+              Close
+            </button>
+            <button (click)="uploadEmployee(uploadForm)" type="submit" class="btn btn-primary">
+                Save Changes
+            </button> 
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal-delete -->
+<div class="modal fade" id="deleteEmployeeModal" tabindex="-1" aria-labelledby="deleteEmployeeModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteEmployeeModal">
+          Delete Employee
+          <i class="btn btn-danger fa fa-exclamation-triangle danger"></i>
+        </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>This employee will remove from data base</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="btn-deleteAddModal" class="btn btn-secondary" data-bs-dismiss="modal">
+          Close
+        </button>
+        <button (click)="deleteEmployee()" type="button" class="btn btn-danger">
+            Delete
+            <i class="fa fa-exclamation-triangle danger"></i>
+          </button>
+      </div>
+    </div>
+  </div>
+</div>

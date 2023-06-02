@@ -1,0 +1,11 @@
+ :root {
+    --main-bg-color: rgb(57, 158, 158);
+    /* --main-bg-color: #2c8d8d; */
+  }
+  
+  body{
+    min-height: 80vh;
+    background-color: #e3e3e3;
+  
+  }
+  
