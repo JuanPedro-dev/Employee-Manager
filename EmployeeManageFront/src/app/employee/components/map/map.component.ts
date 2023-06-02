@@ -51,8 +51,8 @@ export class MapComponent implements OnInit{
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
 
-    // Simular que estoy en mdp
-    map.setView([-37.9934,-57.5491], 15);
+    // // Simular que estoy en mdp
+    // map.setView([-37.9934,-57.5491], 15);
 
     // Add Marker for each employee
     for (const emp of this.employeesList) {

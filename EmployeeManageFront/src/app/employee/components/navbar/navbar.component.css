@@ -2,5 +2,7 @@
     background: var(--main-bg-color);
     background:linear-gradient(-45deg,var(--main-bg-color),#3daa35);
     position: sticky;
+    top: 0;
+    z-index: 100;
 }
   
