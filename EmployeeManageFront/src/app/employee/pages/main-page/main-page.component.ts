@@ -15,19 +15,11 @@ import { CardComponent } from '../../components/card/card.component';
 export class MainPageComponent implements OnInit {
   ngOnInit(): void {
     this.getEmployee();
-    this.geolocationService
-      .getUserLocation()
-      .then((coords) => (this.userActualCoord = coords));
-
-    // this.geolocationService.initMap();
-    // Primero ngAferViewInit deberia estar en geolocation service y no aca... y segundo debo usar una promesa y sacar el setTimeout
-    // setTimeout(() => this.mapBuilder(), 500);
   }
 
   public employees: Employee[] = [];
 
   private employeeActual?: Employee = undefined;
-  public userActualCoord?: [number, number];
 
   constructor(
     private employeeService: EmployeeService,
@@ -55,16 +47,20 @@ export class MainPageComponent implements OnInit {
     }
 
     this.employees = employeesFilter;
+
     if (!str || str === '') {
       this.getEmployee();
     }
+
     if (employeesFilter?.length == 0) {
       // reemplazar por modal
       alert('No se encuentra ninguna coincidencia');
       this.getEmployee();
     }
 
-    
+    // Reemplazar por una Promesa
+    setTimeout(() => this.geolocationService.addMarkers(this.employees), 500)
+
     
   }
 
