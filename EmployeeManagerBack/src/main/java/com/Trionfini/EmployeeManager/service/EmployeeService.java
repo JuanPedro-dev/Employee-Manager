@@ -34,6 +34,7 @@ public class EmployeeService {
     public void update(Employee employeeToUpdate, Long id) {
         Employee employee = employeeRepository.findById(id)
                 .orElseThrow(()-> new UserNotFoundException("User by id: " + id + " not found"));
+
         employeeToUpdate.setId(id);
         employeeToUpdate.setDateAdmission(employee.getDateAdmission());
 
@@ -43,6 +44,7 @@ public class EmployeeService {
 
         employeeRepository.save(employeeToUpdate);
     }
+
     public void delete(Long id) {
         employeeRepository.deleteById(id);
     }
